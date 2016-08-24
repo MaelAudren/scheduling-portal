@@ -530,7 +530,12 @@ public class RMController extends Controller implements UncaughtExceptionHandler
                 sourceDescription = js.stringValue();
             String nodeSourceAdmin = nsObj.get("nodeSourceAdmin").isString().stringValue();
 
-            ns.put(sourceName, new NodeSource(sourceName, sourceDescription, nodeSourceAdmin));
+            String nodeSourceInstances = "";
+            JSONString instanceDescription = nsObj.get("nodeSourceInstances").isString();
+            if (instanceDescription != null)
+                nodeSourceInstances = instanceDescription.stringValue();
+
+            ns.put(sourceName, new NodeSource(sourceName, sourceDescription, nodeSourceAdmin,nodeSourceInstances));
         }
 
         int numDeploying = 0;

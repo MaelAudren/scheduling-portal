@@ -126,7 +126,8 @@ public class InfoView implements NodeSelectedListener, NodesListener {
         DetailViewerField n3 = new DetailViewerField("nodeProvider", "Owner");
         DetailViewerField n4 = new DetailViewerField("hosts", "Hosts");
         DetailViewerField n5 = new DetailViewerField("nodes", "Nodes");
-        this.nsDetails.setFields(n1, n2, n3, n4, n5);
+        DetailViewerField n6 = new DetailViewerField("instances", "Instances");
+        this.nsDetails.setFields(n1, n2, n3, n4, n5, n6);
         this.nsCanvas = new VLayout();
         this.nsCanvas.setWidth100();
         this.nsCanvas.setHeight100();
@@ -268,6 +269,14 @@ public class InfoView implements NodeSelectedListener, NodesListener {
         dv.setAttribute("nodeProvider", ns.getNodeSourceAdmin());
         dv.setAttribute("nodes", numNodes);
         dv.setAttribute("hosts", ns.getHosts().size());
+
+        String instances = ns.getNodeSourceInstances();
+        if(instances==null){
+            dv.setAttribute("instances","No Cloud Instances");
+        }else{
+            dv.setAttribute("instances",instances);
+        }
+
 
         this.nsDetails.setData(new DetailViewerRecord[] { dv });
 

@@ -64,10 +64,13 @@ public class NodeSource {
     /** login of the user that created the NS */
     private String nodeSourceAdmin;
 
-    NodeSource(String sourceName, String sourceDescription, String nodeSourceAdmin) {
+    private String nodeSourceInstances;
+
+    NodeSource(String sourceName, String sourceDescription, String nodeSourceAdmin, String nodeSourceInstances) {
         this.sourceDescription = sourceDescription;
         this.sourceName = sourceName;
         this.nodeSourceAdmin = nodeSourceAdmin;
+        this.nodeSourceInstances = nodeSourceInstances;
         this.hosts = new HashMap<String, Host>();
         this.deploying = new HashMap<String, Node>();
     }
@@ -106,6 +109,10 @@ public class NodeSource {
 
     public String getNodeSourceAdmin() {
         return nodeSourceAdmin;
+    }
+
+    public String getNodeSourceInstances() {
+        return nodeSourceInstances;
     }
 
     public static class Host {
